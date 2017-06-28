@@ -1,0 +1,70 @@
+<h3>Checkout</h3>
+
+<div class="clearfix">
+
+  <div id="shipping-box" class="clearfix col-md-5">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <h4 class="text-center" *ngIf="isAddressAvailable">Shipping address</h4>
+      <div *ngIf="!isAddressAvailable"><br/><br/></div>
+      <p class="text-center" *ngIf="isAddressAvailable">
+        {{user?.name}} {{user?.surname}}<br/>
+        {{user?.street}}<br/>
+        {{user?.zip}} {{user?.city}}
+      </p>
+      <div class="clearfix">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+          <button *ngIf="!isAddressAvailable" [routerLink]="['/addaddress']" id="addaddressbtn" type="button" class="btn btn-primary text-center">Add address</button>
+        </div>
+        <div class="col-md-3">
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="clearfix col-md-7">
+    <div class="form-group col-md-10 col-md-offset-1">
+      <h4 class="text-center">Choose payment method</h4>
+      <select class="form-control" id="paymentMethod" [(ngModel)]="order.paymentMetId">
+        <option *ngFor="let paymentMethod of paymentMethods" [ngValue]="paymentMethod.paymentMetId">{{paymentMethod?.name}}</option>
+      </select>
+    </div>
+    <div class="form-group col-md-10 col-md-offset-1">
+      <h4 class="text-center">Choose shipping method</h4>
+      <select class="form-control" id="shippingMethod" [(ngModel)]="order.shippingMetId" (change)="updateShippingPrice($event)">
+        <option *ngFor="let shippingMethod of shippingMethods" [ngValue]="shippingMethod.shippingMetId">{{shippingMethod?.name}} (${{shippingMethod?.price}})</option>
+      </select>
+    </div>
+  </div>
+
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cartProduct of cartProducts">
+    <td class="col-md-11">{{cartProduct?.name}} ({{cartProduct?.category}}) - {{cartProduct?.type}}</td>
+    <td class="col-md-1">${{cartProduct?.price}}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">Shipping and handling: <strong>${{shippingPrice}}</strong></td>
+  </tr>
+  <tr>
+    <td colspan="3" id="spacer-total"> </td>
+  </tr>
+  <tr>
+    <td colspan="3" id="total-costs" class="text-right">Total: <strong>${{totalPrice?.price + shippingPrice}}</strong></td>
+  </tr>
+  </tbody>
+</table>
+
+<button [ngClass]="{'disabled': !isAddressAvailable}" type="button" id="placeorder-btn" class="btn btn-primary pull-right" (click)="placeOrder()">Place order</button>

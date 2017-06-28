@@ -1,0 +1,17 @@
+# --- !Ups
+
+CREATE TABLE Products (
+ prodId INT NOT NULL AUTO_INCREMENT,
+ typeId INT NOT NULL,
+ catId INT NOT NULL,
+ name VARCHAR(255) NOT NULL,
+ description TEXT NOT NULL,
+ price INT NOT NULL,
+ PRIMARY KEY(prodId),
+ FOREIGN KEY(typeId) REFERENCES ProductTypes(typeId) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(catId) REFERENCES Categories(catId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+# --- !Downs
+
+DROP TABLE Products;

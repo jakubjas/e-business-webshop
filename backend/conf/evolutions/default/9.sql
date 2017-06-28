@@ -1,0 +1,12 @@
+# --- !Ups
+
+CREATE TABLE OrderProduct (
+ orderId INT NOT NULL,
+ prodId INT NOT NULL,
+ FOREIGN KEY(orderId) REFERENCES Orders(orderId) ON DELETE CASCADE ON UPDATE CASCADE,
+ FOREIGN KEY(prodId) REFERENCES Products(prodId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+# --- !Downs
+
+DROP TABLE OrderProduct;

@@ -1,0 +1,22 @@
+<h3>Admin - Products</h3>
+
+<button [routerLink]="['/admin/products/add']" id="addproductbtn" type="button" class="btn btn-primary">Add product</button><br/><br/>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="col-md-6">Name</th>
+    <th class="col-md-2">Type</th>
+    <th class="col-md-3">Category</th>
+    <th class="col-md-1"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products">
+    <td><a [routerLink]="['/admin/products/edit', product.prodId]">{{product.name}}</a></td>
+    <td><a [routerLink]="['/admin/products/edit', product.prodId]">{{product.type}}</a></td>
+    <td><a [routerLink]="['/admin/products/edit', product.prodId]">{{product.category}}</a></td>
+    <td><a href="javascript:void(0);" (click)="deleteProduct(product?.prodId)"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a></td>
+  </tr>
+  </tbody>
+</table>

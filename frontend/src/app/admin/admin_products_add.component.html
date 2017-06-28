@@ -1,0 +1,30 @@
+<h3>Add product</h3>
+
+<form>
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" name="product.name" [(ngModel)]="product.name" class="form-control" id="nameInput" placeholder="Product name" (ngModelChange)="isProductComplete()">
+  </div>
+  <div class="form-group">
+    <label for="categoryInput">Category</label>
+    <select class="form-control" id="categoryInput" name="product.catId" [(ngModel)]="product.catId" (change)="isProductComplete()">
+      <option *ngFor="let category of categories" [ngValue]="category.catId">{{category?.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="typeInput">Condition</label>
+    <select class="form-control" id="typeInput" name="product.typeId" [(ngModel)]="product.typeId" (change)="isProductComplete()">
+      <option *ngFor="let type of types" [ngValue]="type.typeId">{{type?.name}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="priceInput">Price</label>
+    <input type="number" name="product.price" class="form-control" [(ngModel)]="product.price" id="priceInput" placeholder="Product price" (ngModelChange)="isProductComplete()">
+  </div>
+  <div class="form-group">
+    <label for="descriptionInput">Description:</label>
+    <textarea name="product.description" class="form-control" rows="5" [(ngModel)]="product.description" id="descriptionInput" placeholder="Description..." (ngModelChange)="isProductComplete()"></textarea>
+  </div>
+</form>
+
+<button [ngClass]="{'disabled': !isProductAvailableBool}" type="button" class="btn btn-primary pull-right" (click)="addProduct()">Add</button>

@@ -1,0 +1,21 @@
+<h3>{{type?.name}} games</h3>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products">
+    <td><a [routerLink]="['/product', product.prodId]">{{product.name}}</a></td>
+    <td><a [routerLink]="['/product', product.prodId]">{{product.category}}</a></td>
+    <td><a [routerLink]="['/product', product.prodId]">${{product.price}}</a></td>
+  </tr>
+  </tbody>
+</table>
+
+
+

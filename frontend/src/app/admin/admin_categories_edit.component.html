@@ -1,0 +1,10 @@
+<h3>Edit category</h3>
+
+<form>
+  <div class="form-group">
+    <label for="nameInput">Name</label>
+    <input type="text" name="category.name" [(ngModel)]="category.name" class="form-control" id="nameInput" (ngModelChange)="isCategoryComplete()">
+  </div>
+</form>
+
+<button [ngClass]="{'disabled': !isCategoryAvailableBool}" type="button" class="btn btn-primary pull-right" (click)="editCategory()">Save</button>

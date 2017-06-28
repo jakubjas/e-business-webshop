@@ -1,0 +1,53 @@
+<h3>Order: {{orderId}}</h3>
+
+<div class="clearfix">
+
+  <div id="shipping-box" class="clearfix col-md-5">
+    <div class="col-md-2"></div>
+    <div class="col-md-10"><br/>
+      <h4 class="text-center">Shipping address</h4>
+      <p class="text-center">
+        {{user?.name}} {{user?.surname}}<br/>
+        {{user?.street}}<br/>
+        {{user?.zip}} {{user?.city}}
+      </p>
+
+    </div>
+  </div>
+
+  <div class="clearfix col-md-7">
+    <div class="form-group col-md-10 col-md-offset-1">
+      <h4 class="text-center">Payment method: </h4>
+      <div class="text-center">{{paymentMethod?.name}}</div>
+    </div>
+    <div class="form-group col-md-10 col-md-offset-1">
+      <h4 class="text-center">Shipping method: </h4>
+      <div class="text-center">{{shippingMethod?.name}}</div>
+    </div>
+  </div>
+
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of order">
+    <td class="col-md-11">{{product?.name}} ({{product?.category}}) - {{product?.type}}</td>
+    <td class="col-md-1">${{product?.price}}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="text-center">Shipping and handling: <strong>${{shippingMethod?.price}}</strong></td>
+  </tr>
+  <tr>
+    <td colspan="3" id="spacer-total"> </td>
+  </tr>
+  <tr>
+    <td colspan="3" id="total-costs" class="text-right">Total: <strong>${{totalPrice?.price + shippingMethod?.price}}</strong></td>
+  </tr>
+  </tbody>
+</table>

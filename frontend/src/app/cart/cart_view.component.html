@@ -1,0 +1,26 @@
+<h3>Cart</h3>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cartProduct of cartProducts">
+    <td class="col-md-11"><a [routerLink]="['/product', cartProduct?.prodId]">{{cartProduct?.name}} ({{cartProduct?.category}}) - {{cartProduct?.type}}</a></td>
+    <td class="col-md-1.5">${{cartProduct?.price}}</td>
+    <td class="col-md-0.5"><a href="javascript:void(0);" (click)="deleteProductFromCart(cartProduct?.prodId)"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a></td>
+  </tr>
+  <tr>
+    <td colspan="3" id="spacer-total"> </td>
+  </tr>
+  <tr>
+    <td colspan="3" id="total-costs" class="text-right">Total: <strong>${{totalPrice?.price}}</strong></td>
+  </tr>
+  </tbody>
+</table>
+
+<button type="button" id="checkout-btn" class="btn btn-primary pull-right" [ngClass]="{'disabled': (cartProducts.length == 0)}" [routerLink]="['/checkout']">Checkout</button>

@@ -1,0 +1,33 @@
+<h3>{{product?.name}}</h3>
+
+<strong>Category</strong>: {{product?.category}}<br/>
+<strong>Condition</strong>: {{product?.type}}<br/>
+<strong>Price</strong>: ${{product?.price}}<br/>
+
+<button *ngIf="isAuthenticated()" [ngClass]="{'disabled': isInCart}" class="btn btn-primary btn-wide btn-addtocart" (click)="addProductToCart(product?.prodId)" data-toggle="modal" data-target="#addToCartModal">
+  Add to cart
+</button><br/>
+
+<strong>Description:</strong><br/>
+{{product?.description}}
+
+<!-- Modal -->
+<div id="addToCartModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-primary" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Product added</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{product?.name}} ({{product?.category}}) added to your cart.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

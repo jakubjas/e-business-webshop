@@ -1,0 +1,73 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Categories
+GET     /getcategories                          @controllers.Application.getcategories
+GET     /getcategory/:catId                     @controllers.Application.getcategory(catId: Long)
+POST    /addcategory                            @controllers.Application.addcategory
+GET     /deletecategory/:catId                  @controllers.Application.deletecategory(catId: Long)
+POST    /editcategory/:id                       @controllers.Application.editcategory(id: Long)
+
+# Product Types
+GET     /getproducttypes                        @controllers.Application.getproducttypes
+GET     /getproducttype/:typeId                 @controllers.Application.getproducttype(typeId: Long)
+POST    /addproducttype                         @controllers.Application.addproducttype
+GET     /deleteproducttype/:typeId              @controllers.Application.deleteproducttype(typeId: Long)
+POST    /editproducttype/:id                    @controllers.Application.editproducttype(id: Long)
+
+# Payment Methods
+GET     /getpaymentmethods                      @controllers.Application.getpaymentmethods
+GET     /getpaymentmethod/:paymentMetId         @controllers.Application.getpaymentmethod(paymentMetId: Long)
+POST    /addpaymentmethod                       @controllers.Application.addpaymentmethod
+GET     /deletepaymentmethod/:paymentMetId      @controllers.Application.deletepaymentmethod(paymentMetId: Long)
+POST    /editpaymentmethod/:id                  @controllers.Application.editpaymentmethod(id: Long)
+
+# Shipping Methods
+GET     /getshippingmethods                     @controllers.Application.getshippingmethods
+GET     /getshippingmethod/:shippingMetId       @controllers.Application.getshippingmethod(shippingMetId: Long)
+POST    /addshippingmethod                      @controllers.Application.addshippingmethod
+GET     /deleteshippingmethod/:shippingMetId    @controllers.Application.deleteshippingmethod(shippingMetId: Long)
+POST    /editshippingmethod/:id                 @controllers.Application.editshippingmethod(id: Long)
+
+# Users
+GET     /getusers                               @controllers.Application.getusers
+GET     /getuser/:userId                        @controllers.Application.getuser(userId: String)
+POST    /adduser                                @controllers.Application.adduser
+GET     /deleteuser/:userId                     @controllers.Application.deleteuser(userId: String)
+POST    /edituser                               @controllers.Application.edituser
+
+# Products
+GET     /getproducts                            @controllers.Application.getproducts
+GET     /getproduct/:prodId                     @controllers.Application.getproduct(prodId: Long)
+POST    /addproduct                             @controllers.Application.addproduct
+GET     /deleteproduct/:prodId                  @controllers.Application.deleteproduct(prodId: Long)
+POST    /editproduct/:id                        @controllers.Application.editproduct(id: Long)
+
+# Carts
+GET     /getusercart/:usrId                     @controllers.Application.getusercart(usrId: String)
+POST    /addtocart                              @controllers.Application.addtocart
+GET     /deletefromcart/:usrId/:prodId          @controllers.Application.deletefromcart(usrId: String, prodId: Long)
+GET     /emptycart/:usrId                       @controllers.Application.emptycart(usrId: String)
+
+# Orders
+GET     /getorders                              @controllers.Application.getorders
+GET     /getordersbyuser/:usrId                 @controllers.Application.getordersbyuser(usrId: String)
+GET     /getorder/:orderId                      @controllers.Application.getorder(orderId: Long)
+POST    /addorder                               @controllers.Application.addorder
+GET     /deleteorder/:orderId                   @controllers.Application.deleteorder(orderId: Long)
+
+# OrderProduct
+GET     /getorderproducts/:orderId              @controllers.Application.getorderproducts(orderId: Long)
+POST    /addorderproduct                        @controllers.Application.addorderproduct
+
+# Authentication
+GET      /user                                  @controllers.ApplicationController.user
+GET      /authenticate/:provider                @controllers.SocialAuthController.authenticate(provider)
+POST     /authenticate/:provider                @controllers.SocialAuthController.authenticate(provider)
+
+# Map static resources from the /public folder to the /assets URL path
+GET      /assets/*file                          @controllers.Assets.at(path="/public", file)
+
+OPTIONS  /                                      @controllers.Application.options(path: String ?= "")
+OPTIONS  /*path                                 @controllers.Application.options(path)

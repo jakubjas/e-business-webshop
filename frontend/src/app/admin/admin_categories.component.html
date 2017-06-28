@@ -1,0 +1,18 @@
+<h3>Admin - Categories</h3>
+
+<button [routerLink]="['/admin/categories/add']" id="addcategorybtn" type="button" class="btn btn-primary">Add category</button><br/><br/>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="col-md-11">Name</th>
+    <th class="col-md-1"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let category of categories">
+    <td><a [routerLink]="['/admin/categories/edit', category.catId]">{{category.name}}</a></td>
+    <td><a href="javascript:void(0);" (click)="deleteCategory(category?.catId)"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a></td>
+  </tr>
+  </tbody>
+</table>

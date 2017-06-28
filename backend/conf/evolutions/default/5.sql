@@ -1,0 +1,17 @@
+# --- !Ups
+
+CREATE TABLE Users (
+ userId VARCHAR(255) NOT NULL,
+ name VARCHAR(255) NOT NULL,
+ surname VARCHAR(255) NOT NULL,
+ email VARCHAR(255) NOT NULL,
+ street VARCHAR(255) NOT NULL,
+ zip VARCHAR(255) NOT NULL,
+ city VARCHAR(255) NOT NULL,
+ isAdmin TINYINT(1) DEFAULT 0,
+ PRIMARY KEY(userId)
+);
+
+# --- !Downs
+
+DROP TABLE Users;

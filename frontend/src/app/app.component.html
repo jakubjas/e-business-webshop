@@ -1,0 +1,32 @@
+<nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+    <a class="navbar-brand" routerLink="/home">GameShop</a>
+  </div>
+  <div class="collapse navbar-collapse" id="navbar-collapse-01">
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/products">Products</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
+        <span class="dropdown-arrow"></span>
+        <ul class="dropdown-menu">
+          <li *ngFor="let category of categories"><a [routerLink]="['/products_by_category', category.catId]">{{category.name}}</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Types <b class="caret"></b></a>
+        <span class="dropdown-arrow"></span>
+        <ul class="dropdown-menu">
+          <li *ngFor="let type of types"><a [routerLink]="['/products_by_type', type.typeId]">{{type.name}}</a></li>
+        </ul>
+      </li>
+    </ul>
+    <p *ngIf="isAuthenticated()" class="navbar-text navbar-right">Signed in as <a href [routerLink]="['/viewprofile']">{{user?.name}} {{user?.surname}}</a> <a href (click)="signOut()"><i id="signoutbtn" class="fa fa-sign-out" aria-hidden="true"></i></a></p>
+    <p *ngIf="isAuthenticated()" class="navbar-text navbar-right"><a [routerLink]="['/cart']"><i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> <span class="badge btn-primary">{{cartCounter}}</span></a></p>
+    <button *ngIf="!isAuthenticated()" id="signinbtn" [routerLink]="['/signin']" class="btn btn-default navbar-btn btn-sm navbar-right" type="button">Sign in</button>
+    <button *ngIf="isAuthenticated() && isAdminBool" [routerLink]="['/admin']" class="btn btn-default navbar-btn btn-sm navbar-right" type="button">Admin panel</button>
+  </div><!-- /.navbar-collapse -->
+</nav><!-- /navbar -->
+<router-outlet></router-outlet>

@@ -1,0 +1,12 @@
+.fa-times {
+  color: #e74c3c;
+  margin-left: 5px;
+}
+
+#total-costs {
+  background: #ffffff
+}
+
+#checkout-btn {
+  margin-top: -10px;
+}
